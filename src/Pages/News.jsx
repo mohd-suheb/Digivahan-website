@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import frame1 from "../assets/Frame 7.png";
 import frame2 from "../assets/Frame 8.png";
 import frame3 from "../assets/Frame 9.png";
@@ -10,52 +10,92 @@ const News = () => {
       title: [
         "London to Istanbul by train: This",
         "10-day rail adventure is a slow",
-        "traveller’s dream"
+        "traveller’s dream",
       ],
       author: "Ginny Dennis",
       date: "Feb 4 2023",
       content: [
         "Romantic cross-European train journeys have long been associated with the Orient Express. But you no longer need to fork out thousands to make this fabled journey.",
         "From Byway to Tailor Made Rail, companies are cropping up to meet renewed demand for long distance train travel.",
-        "An epic trip with the latter takes you all the way..."
-      ]
+        "An epic trip with the latter takes you all the way...",
+      ],
     },
     {
       img: frame2,
-      title: [
-        "More Airports to Use Greener",
-        "‘Glide’ Approach to Landing"
-      ],
+      title: ["More Airports to Use Greener", "‘Glide’ Approach to Landing"],
       author: "Ginny Dennis",
       date: "Feb 4 2023",
       content: [
         "Eleven more U.S. airports plan to adopt a new way of landing planes that reduces both emissions and noise — all by having incoming planes turn off their engines and glide down to the tarmac like a paraglider.",
-        "The Federal Aviation Administration announced Monday that planes heading to Orlando, Fla.; Kansas City, Mo.; Omaha, Neb.; Nebraska's Offutt Air Force Base; Reno, Nev.; and six airports in South Florida soon would make idle descents to..."
-      ]
+        "The Federal Aviation Administration announced Monday that planes heading to Orlando, Fla.; Kansas City, Mo.; Omaha, Neb.; Nebraska's Offutt Air Force Base; Reno, Nev.; and six airports in South Florida soon would make idle descents to...",
+      ],
     },
     {
       img: frame3,
       title: [
         "London to Istanbul by train: This",
         "10-day rail adventure is a slow",
-        "traveller’s dream"
+        "traveller’s dream",
       ],
       author: "Ginny Dennis",
       date: "Feb 4 2023",
       content: [
         "Total Federal Aviation Administration the train by 2.5 liter that planes heading per percent to Orlando, in the City, Mo.; Omaha, Neb.; planes Nebraska's vast geographical Base; Reno, planes heading Nev. Russia and Florida soon would make moldava.",
-        "But people Aviation Administration continue western drink planes heading per percent to drink the City, Mo.; Omaha, Neb.; planes Nebraska's vast consumption nine omla in the European..."
-      ]
-    }
+        "But people Aviation Administration continue western drink planes heading per percent to drink the City, Mo.; Omaha, Neb.; planes Nebraska's vast consumption nine omla in the European...",
+      ],
+    },
+    // 👇 same cards repeat karke 9 total kar liye (3x3 grid ke liye)
+    {
+      img: frame1,
+      title: ["Extra News", "Same as Above"],
+      author: "Reporter",
+      date: "Feb 5 2023",
+      content: ["This is dummy extra card for grid balance."],
+    },
+    {
+      img: frame2,
+      title: ["Extra News", "Same as Above"],
+      author: "Reporter",
+      date: "Feb 5 2023",
+      content: ["This is dummy extra card for grid balance."],
+    },
+    {
+      img: frame3,
+      title: ["Extra News", "Same as Above"],
+      author: "Reporter",
+      date: "Feb 5 2023",
+      content: ["This is dummy extra card for grid balance."],
+    },
+    {
+      img: frame1,
+      title: ["Extra News", "Same as Above"],
+      author: "Reporter",
+      date: "Feb 5 2023",
+      content: ["This is dummy extra card for grid balance."],
+    },
+    {
+      img: frame2,
+      title: ["Extra News", "Same as Above"],
+      author: "Reporter",
+      date: "Feb 5 2023",
+      content: ["This is dummy extra card for grid balance."],
+    },
+    {
+      img: frame3,
+      title: ["Extra News", "Same as Above"],
+      author: "Reporter",
+      date: "Feb 5 2023",
+      content: ["This is dummy extra card for grid balance."],
+    },
   ];
 
   return (
     <div className="bg-white py-6 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto flex flex-wrap gap-8 justify-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {newsData.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col w-full md:w-[32%] bg-gray-50 rounded-lg shadow-md overflow-hidden"
+            className="flex flex-col bg-gray-50 rounded-lg shadow-md overflow-hidden"
           >
             <img
               src={item.img}
