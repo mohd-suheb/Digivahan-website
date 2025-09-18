@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/Digivahan-website/static/css/main.46497a38.css",
+    "main.js": "/Digivahan-website/static/js/main.c2dff3ce.js",
+    "static/media/image 20.png": "/Digivahan-website/static/media/image 20.a3d27c270b60671fd722.png",
+    "static/media/Container.png": "/Digivahan-website/static/media/Container.2c9f2ae597053aba920a.png",
+    "static/media/Col (1).png": "/Digivahan-website/static/media/Col (1).fd563c80fe7deef328e9.png",
+    "static/media/Left (1).png": "/Digivahan-website/static/media/Left (1).7197cc844ab7414b194f.png",
+    "static/media/03vid-blinken-balloon_promo-gzqf-videoLarge 1.png": "/Digivahan-website/static/media/03vid-blinken-balloon_promo-gzqf-videoLarge 1.177b11377717d1f7d771.png",
+    "static/media/Desktop.png": "/Digivahan-website/static/media/Desktop.1db8c64b373d2c3eda40.png",
+    "static/media/Frame 8.png": "/Digivahan-website/static/media/Frame 8.dccb11bc47ae4bce26f8.png",
+    "static/media/Left.png": "/Digivahan-website/static/media/Left.46284f91cb6afa818457.png",
+    "static/media/Frame 9.png": "/Digivahan-website/static/media/Frame 9.d29d8d09447f3c3357ff.png",
+    "static/media/Frame 7.png": "/Digivahan-website/static/media/Frame 7.f5e663894eae4ec35422.png",
+    "static/media/03china-surveillance-add-fvzg-videoSixteenByNine1050 1.png": "/Digivahan-website/static/media/03china-surveillance-add-fvzg-videoSixteenByNine1050 1.fcfe93b1c75583376d8d.png",
+    "static/media/Frame 1.png": "/Digivahan-website/static/media/Frame 1.7644d7a74c75995a98eb.png",
+    "static/media/smart QR.png": "/Digivahan-website/static/media/smart QR.62362370f0d85e2a9f96.png",
+    "static/media/Important renewal.png": "/Digivahan-website/static/media/Important renewal.e47bdc3c1476781143f1.png",
+    "static/media/Col.svg": "/Digivahan-website/static/media/Col.85ac1cf899d0a40791e128f553329945.svg",
+    "static/media/Your personal vitrual garage.png": "/Digivahan-website/static/media/Your personal vitrual garage.4f3a8b848d258d533f0b.png",
+    "static/media/Right.png": "/Digivahan-website/static/media/Right.18345cf8d2877b57549f.png",
+    "static/media/Group 8.png": "/Digivahan-website/static/media/Group 8.44b9b0165a47c422952f.png",
+    "static/media/Instant Alert icon.svg": "/Digivahan-website/static/media/Instant Alert icon.e5dab963270884ffe151d933096a669b.svg",
+    "index.html": "/Digivahan-website/index.html",
+    "main.46497a38.css.map": "/Digivahan-website/static/css/main.46497a38.css.map",
+    "main.c2dff3ce.js.map": "/Digivahan-website/static/js/main.c2dff3ce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46497a38.css",
+    "static/js/main.c2dff3ce.js"
+  ]
+}
