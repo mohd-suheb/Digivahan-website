@@ -12,6 +12,14 @@ import ContactUS from "./Pages/ContactUS";
 import News from "./Pages/News";
 import Updates from "./Pages/Updates";
 import Login from "./Pages/Login";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import Home from "./Pages/Home";  
+import { Navigate } from "react-router-dom";
+import ProtectionPolicy from "./Pages/ProtectionPolicy";
+import ReturnRefundPolicy from "./Pages/ReturnRefundPolicy";
+
+
+
 
 
 
@@ -21,6 +29,10 @@ function App() {
       <Navbar />
        
       <Routes>
+        
+
+        
+        <Route path="/" element={<Home />} /> 
         {/* Home Page */}
         <Route
           path="/"
@@ -39,6 +51,11 @@ function App() {
         <Route path="/contactus" element={ <ContactUS />} />
         <Route path="/News" element={ <News/>} />
         <Route path ="/Updates" element = {<Updates/>} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+       <Route path="/protection-policy" element={<ProtectionPolicy />} />
+       <Route path = "/refund-policy" element = {<ReturnRefundPolicy/>} />
+
+
 
         
         <Route
@@ -69,7 +86,8 @@ function App() {
         />
 
       <Route path ="/Login" element = {<Login/>} />
-          
+      
+       <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
        
          

@@ -1,129 +1,146 @@
-import React from "react";
-import frame1 from "../assets/Frame 7.png";
-import frame2 from "../assets/Frame 8.png";
-import frame3 from "../assets/Frame 9.png";
+import { useState, useEffect } from "react";
 
 const News = () => {
-  const newsData = [
-    {
-      img: frame1,
-      title: [
-        "London to Istanbul by train: This",
-        "10-day rail adventure is a slow",
-        "traveller’s dream",
-      ],
-      author: "Ginny Dennis",
-      date: "Feb 4 2023",
-      content: [
-        "Romantic cross-European train journeys have long been associated with the Orient Express. But you no longer need to fork out thousands to make this fabled journey.",
-        "From Byway to Tailor Made Rail, companies are cropping up to meet renewed demand for long distance train travel.",
-        "An epic trip with the latter takes you all the way...",
-      ],
-    },
-    {
-      img: frame2,
-      title: ["More Airports to Use Greener", "‘Glide’ Approach to Landing"],
-      author: "Ginny Dennis",
-      date: "Feb 4 2023",
-      content: [
-        "Eleven more U.S. airports plan to adopt a new way of landing planes that reduces both emissions and noise — all by having incoming planes turn off their engines and glide down to the tarmac like a paraglider.",
-        "The Federal Aviation Administration announced Monday that planes heading to Orlando, Fla.; Kansas City, Mo.; Omaha, Neb.; Nebraska's Offutt Air Force Base; Reno, Nev.; and six airports in South Florida soon would make idle descents to...",
-      ],
-    },
-    {
-      img: frame3,
-      title: [
-        "London to Istanbul by train: This",
-        "10-day rail adventure is a slow",
-        "traveller’s dream",
-      ],
-      author: "Ginny Dennis",
-      date: "Feb 4 2023",
-      content: [
-        "Total Federal Aviation Administration the train by 2.5 liter that planes heading per percent to Orlando, in the City, Mo.; Omaha, Neb.; planes Nebraska's vast geographical Base; Reno, planes heading Nev. Russia and Florida soon would make moldava.",
-        "But people Aviation Administration continue western drink planes heading per percent to drink the City, Mo.; Omaha, Neb.; planes Nebraska's vast consumption nine omla in the European...",
-      ],
-    },
-    // 👇 same cards repeat karke 9 total kar liye (3x3 grid ke liye)
-    {
-      img: frame1,
-      title: ["Extra News", "Same as Above"],
-      author: "Reporter",
-      date: "Feb 5 2023",
-      content: ["This is dummy extra card for grid balance."],
-    },
-    {
-      img: frame2,
-      title: ["Extra News", "Same as Above"],
-      author: "Reporter",
-      date: "Feb 5 2023",
-      content: ["This is dummy extra card for grid balance."],
-    },
-    {
-      img: frame3,
-      title: ["Extra News", "Same as Above"],
-      author: "Reporter",
-      date: "Feb 5 2023",
-      content: ["This is dummy extra card for grid balance."],
-    },
-    {
-      img: frame1,
-      title: ["Extra News", "Same as Above"],
-      author: "Reporter",
-      date: "Feb 5 2023",
-      content: ["This is dummy extra card for grid balance."],
-    },
-    {
-      img: frame2,
-      title: ["Extra News", "Same as Above"],
-      author: "Reporter",
-      date: "Feb 5 2023",
-      content: ["This is dummy extra card for grid balance."],
-    },
-    {
-      img: frame3,
-      title: ["Extra News", "Same as Above"],
-      author: "Reporter",
-      date: "Feb 5 2023",
-      content: ["This is dummy extra card for grid balance."],
-    },
-  ];
+  const [newsData, setNewsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch("api/news");
+        const data = await res.json();
+
+        let articles = [];
+        if (Array.isArray(data)){
+            articles = data;
+        }
+           
+        else if (data?.articles){
+               articles = data.articles;
+        }
+          
+
+        // Sort latest news top
+        articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+        setNewsData(articles);
+      } catch (error) {
+        console.error("Fetching error:", error);
+        setNewsData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="text-xl text-center text-blue-300 mt-10">
+        Loading news...
+      </div>
+    );
+
+  if (!newsData.length)
+    return (
+      <div className="text-center text-gray-500 mt-10">No news available.</div>
+    );
+
+
+  const firstTwo = newsData.slice(0, 2);
+  const restNews = newsData.slice(2);
 
   return (
     <div className="bg-white py-6 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {newsData.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col bg-gray-50 rounded-lg shadow-md overflow-hidden"
-          >
-            <img
-              src={item.img}
-              alt={`News ${index + 1}`}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-4 flex flex-col gap-2">
-              <div className="text-xl font-bold text-black">
-                {item.title.map((line, idx) => (
-                  <p key={idx}>{line}</p>
-                ))}
-              </div>
-              <div className="flex justify-between text-gray-500 text-sm">
-                <p>By {item.author}</p>
-                <p>{item.date}</p>
-              </div>
-              <div className="border-t border-gray-300 my-2"></div>
-              {item.content.map((para, idx) => (
-                <p key={idx} className="text-green-800 text-sm leading-relaxed">
-                  {para}
+      <div className="max-w-7xl mx-auto flex flex-col gap-8">
+
+        {/* First row: 2 big cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {firstTwo.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col bg-gray-50 rounded-lg shadow-md overflow-hidden"
+            >
+              <img
+                src={item.urlToImage || "https://via.placeholder.com/700x400?text=No+Image"}
+                alt={item.title || "News image"}
+                className="w-full h-80 object-cover"
+              />
+              <div className="p-4 flex flex-col gap-2">
+                <div className="text-2xl font-bold text-black">{item.title || "No title"}</div>
+                <div className="flex justify-between text-gray-500 text-sm">
+                  <p>By {item.author || "Unknown"}</p>
+                  <p>
+                    {item.publishedAt  ? new Date(item.publishedAt).toLocaleDateString()  : "Unknown date"}
+                     
+                     
+                  </p>
+                </div>
+                <div className="border-t border-gray-300 my-2"></div>
+                <p className="text-green-800 text-sm leading-relaxed">
+                  {item.description || item.content || "No description available."}
                 </p>
-              ))}
+                {item.url && (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline mt-2"
+                  >
+                    Read more
+                  </a>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Next rows: 3 smaller cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          {restNews.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col bg-gray-50 rounded-lg shadow-md overflow-hidden"
+            >
+              <img
+                src={item.urlToImage || "https://via.placeholder.com/400x250?text=No+Image"}
+                alt={item.title || "News image"}
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4 flex flex-col gap-2">
+                <div className="text-xl font-bold text-black">{item.title || "No title"}</div>
+                <div className="flex justify-between text-gray-500 text-sm">
+                  <p>By {item.author || "Unknown"}</p>
+                  <p>
+                    {item.publishedAt
+                      ? new Date(item.publishedAt).toLocaleDateString()
+                      : "Unknown date"}
+                  </p>
+                </div>
+                <div className="border-t border-gray-300 my-2"></div>
+                <p className="text-green-800 text-sm leading-relaxed">
+                  {item.description || item.content || "No description available."}
+                </p>
+                {item.url && (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline mt-2"
+                  >
+                    Read more
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default News;
+
+

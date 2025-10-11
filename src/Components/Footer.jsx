@@ -50,9 +50,10 @@ export const Footer = () => {
           <ul className="flex flex-col gap-2 text-sm">
             <li className="text-gray-600 font-bold">Company</li>
             <li>About</li>
-            <li>Privacy Policy</li>
-            <li>Data Protection Policy</li>
-            <li>Return and Refund Policy</li>
+
+          <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+            <li><Link to="/protection-policy">Data Protection Policy</Link></li>
+            <li><Link to= "/refund-policy">Return and Refund Policy</Link></li>
             <li>Terms and Conditions</li>
           </ul>
         </div>
