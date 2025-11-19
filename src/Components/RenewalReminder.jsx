@@ -4,7 +4,7 @@ import renewalImage from "../assets/Important renewal.png";
 const RenewalReminder = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-6 py-12">
-      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 bg-gray-200 p-6 md:p-8 rounded-lg">
+      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12  p-6 md:p-8 rounded-lg">
         
         <div className="flex-shrink-0">
           <img

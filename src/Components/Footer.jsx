@@ -5,7 +5,8 @@ import { PiBirdFill } from "react-icons/pi";
 import digismalimg from "../assets/Group 8.png";
 import { Link } from "react-router-dom";
 import Appimg from "../assets/App Download.png";
-
+// import { Link } from "react-router-dom";
+import Razatpg from "../Pages/Razatpg";
 export const Footer = () => {
   return (
     <footer className="bg-white border-t border-gray-200 mt-10">
@@ -28,40 +29,47 @@ export const Footer = () => {
           <ul className="flex flex-col gap-2 text-sm">
             <li className="text-gray-600 font-bold">Pages</li>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/news">News</Link></li>
-            <li><Link to="/updates">Updates</Link></li>
-            <li><Link to="/login">Login</Link></li>
+              <li><Link to="/about">About us</Link></li>
+            {/* <li><Link to="/news">News</Link></li>
+            <li><Link to="/updates">Updates</Link></li> */}
+            {/* <li><Link to="/login">Login</Link></li> */}
           </ul>
         </div>
 
         {/* Support */}
-        <div>
+        {/* <div>
           <ul className="flex flex-col gap-2 text-sm">
             <li className="text-gray-600 font-bold">Support</li>
             <li><Link to="/contactus">Contact Us</Link></li>
-            <li>Visit Us</li>
-            <li>Raise Concern</li>
-            <li>Reports</li>
+            <li><Link to= "/Visit-us">Visit Us</Link></li>
+            <li><Link to= "/Raise">Raise Concern</Link></li>
+            <li><Link to= "/Report">Reports</Link></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Company */}
         <div>
           <ul className="flex flex-col gap-2 text-sm">
             <li className="text-gray-600 font-bold">Company</li>
-            <li>About</li>
+            {/* <li>About</li> */}
 
           <li><Link to="/privacy-policy">Privacy Policy</Link></li>
             <li><Link to="/protection-policy">Data Protection Policy</Link></li>
-            <li><Link to= "/refund-policy">Return and Refund Policy</Link></li>
-            <li>Terms and Conditions</li>
+            <li><Link to="/return-refund-policy">Return & Refund Policy</Link></li>
+
+            <li>
+          <Link to="/terms-and-conditions">Terms and Conditions</Link>
+          </li>
+
           </ul>
         </div>
 
         {/* Available On */}
         <div>
-          <p className="text-gray-600 font-bold mb-3">Available on</p>
-          <img src={Appimg} alt="App Download" className="h-16 w-auto" />
+          {/* <p className="text-gray-600 font-bold mb-3">Available on</p> */}
+        {/* <Link to="/razat">
+        <img src={Appimg} alt="App Download" className="h-16 w-auto cursor-pointer" />
+        </Link> */}
         </div>
       </div>
 
@@ -71,19 +79,19 @@ export const Footer = () => {
       {/* Last part */}
       <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4 gap-4">
         {/* Left Part */}
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <img src={digismalimg} alt="group Image" className="h-12 w-auto" />
           <p className="text-xs sm:text-sm text-gray-600">© 2023 All rights reserved.</p>
-        </div>
+        </div> */}
 
         {/* Right Part (Icons) */}
-        <div className="flex items-center gap-3 text-gray-600 text-xl">
+        {/* <div className="flex items-center gap-3 text-gray-600 text-xl">
           <FaYoutube className="hover:text-red-600 cursor-pointer" />
           <FaFacebookSquare className="hover:text-blue-600 cursor-pointer" />
           <PiBirdFill className="hover:text-sky-500 cursor-pointer" />
           <FaInstagramSquare className="hover:text-pink-500 cursor-pointer" />
           <span className="font-semibold cursor-pointer">in</span>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

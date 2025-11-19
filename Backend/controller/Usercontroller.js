@@ -3,100 +3,86 @@ const User = require('../models/Users');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-// ✅ User Register
+
+
+// User Register
 const userregister = async (req, res) => {
   try {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, role } = req.body;
 
-    // check if user exists
     const existuser = await User.findOne({ email });
-    if (existuser) {
-      return res.status(400).json({
-        success: false,
-        message: 'User already exists',
-      });
-    }
+    if (existuser) return res.status(400).json({ success: false, message: "User already exists" });
 
-    // hash password
     const hashpassword = await bcrypt.hash(password, 10);
 
-    // create new user
     const user = await User.create({
       firstname,
       lastname,
       email,
       password: hashpassword,
+      role: role || "user",
     });
 
-   //create token
-   const token = jwt.sign(
-    {id:user._id},
-    process.env.JWT_SECRET,
-    {expiresIn:"7d"}
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-   );
-
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
-      message: 'User registered successfully',
+      message: "User registered successfully",
       token,
-      user,
+      user: { id: user._id, firstname: user.firstname, lastname: user.lastname, email: user.email, role: user.role },
     });
   } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: 'Server error during registration',
-      error: error.message,
-    });
+    console.error("Register error:", error);
+    return res.status(500).json({ success: false, message: "Server error during registration", error: error.message });
   }
 };
 
-
-// ✅ User Login
+// User Login
 const loginuser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // check user exists
     const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: 'Invalid credentials (user not found)',
-      });
-    }
+    if (!user) return res.status(400).json({ success: false, message: "Invalid credentials (user not found)" });
 
-    // compare passwords
     const ismatch = await bcrypt.compare(password, user.password);
-    if (!ismatch) {
-      return res.status(400).json({
-        success: false,
-        message: 'Incorrect password',
-      });
-    }
+    if (!ismatch) return res.status(400).json({ success: false, message: "Incorrect password" });
 
-    // create JWT token
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,  // ⚠️ spelling was wrong before
-      { expiresIn: '7d' }
-    );
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     return res.status(200).json({
       success: true,
-      message: 'Login successful',
+      message: "Login successful",
       token,
-      user,
+      user: { id: user._id, email: user.email, role: user.role },
     });
   } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: 'Error while login',
-      error: error.message,
-    });
+    console.error("Login error:", error);
+    return res.status(500).json({ success: false, message: "Error while login", error: error.message });
   }
 };
 
-// ✅ Export correctly for require() syntax
-module.exports = { userregister, loginuser };
+
+const sendOtp = async (req, res) => {
+  try {
+    // Your OTP sending logic
+    res.status(200).json({ success: true, message: "OTP sent" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error sending OTP" });
+  }
+};
+
+const verifyOtp = async (req, res) => {
+  try {
+    // Your OTP verification logic
+    res.status(200).json({ success: true, message: "OTP verified" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error verifying OTP" });
+  }
+};
+
+module.exports = { userregister, loginuser,  sendOtp, verifyOtp };
+
+
+
 

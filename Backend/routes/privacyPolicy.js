@@ -1,24 +1,25 @@
-const express = require('express');
-const privacyPolicyData= require("../controller/privacyPolicyData");
- const dataProtectionPolicy = require("../controller/dataProtectionPolicy");
- const returnRefundPolicy = require("../controller/returnRefundPolicy"); 
-
-
+const express = require("express");
 const router = express.Router();
 
+const { getPrivacyPolicy, updatePrivacyPolicy } = require("../controller/privacyPolicyData");
+// ⬆️ ye correct hai - updateprivacyData nahi, updatePrivacyPolicy hona chahiye
 
+const { ProtectionPolicy } = require('../controller/dataProtectionPolicy'); 
+const { ReturnRefundPolicy } = require("../controller/returnRefundPolicy");
+const { TermsAndConditions } = require('../controller/termsAndConditions');
+const { isauth, isadmin } = require("../controller/middleware/Authn");
 
-router.get('/privacy-policy', async(req, res) =>{
-    res.json(privacyPolicyData);
-})
+// GET routes
+router.get("/privacy-policy", getPrivacyPolicy);
+router.get("/protection-policy", ProtectionPolicy);
+router.get("/return-refund-policy", ReturnRefundPolicy); 
+router.get("/terms-and-conditions", TermsAndConditions); 
 
-router.get('/protection-policy', async(req, res)=>{
-    res.json(dataProtectionPolicy);
-})
-
-
-router.get("/refund-policy", (req, res) => {
-  res.json(returnRefundPolicy);
-});
+// PUT route - Only admin can update
+router.put("/privacy-policy", isauth, isadmin, updatePrivacyPolicy);
+// ⬆️ updateprivacyData se updatePrivacyPolicy kar diya
 
 module.exports = router;
+
+
+

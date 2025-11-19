@@ -56,7 +56,7 @@ function AboutSection() {
       </section>
 
       {/* ---- Second Section ---- */}
-      <section className="w-full bg-gray-50 py-12 px-4 md:px-6">
+      <section className="w-full  py-12 px-4 md:px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 items-center">
           {/* Left: Image */}
           <div className="relative md:w-1/2 flex justify-center items-center mt-6 md:mt-0">

@@ -8,10 +8,10 @@ const Category = () => {
     <section className="w-full py-16  ">
       <div className="max-w-7xl mx-auto px-4">
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
           
           {/* Card 1 */}
-          <div className="p-6 rounded-2xl text-center">
+          <div className="p-6 rounded-2xl shadow-md bg-white text-center">
             <img
               src={protectionIcon}
               alt="24/7 Protection"

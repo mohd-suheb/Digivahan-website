@@ -21,17 +21,17 @@ const Hero = () => {
             everything to your fingertips. With a mission to make transportation smarter, safer, and 
             more accessible, we are revolutionizing the way India moves.
           </p>
-          <p className="text-md sm:text-lg text-gray-700 mt-4">
+          {/* <p className="text-md sm:text-lg text-gray-700 mt-4">
             Download the app now and experience a new era of vehicle management!
-          </p>
+          </p> */}
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6">
-            <button className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition">
+            {/* <button className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition">
               Download Now
-            </button>
+            </button> */}
             <div className="flex items-center space-x-2 cursor-pointer mt-2 sm:mt-0">
-              <PlayCircle className="w-8 h-8 text-yellow-500" />
-              <span className="font-medium text-gray-700 text-sm sm:text-base">Watch Video</span>
+              {/* <PlayCircle className="w-8 h-8 text-yellow-500" />
+              <span className="font-medium text-gray-700 text-sm sm:text-base">Watch Video</span> */}
             </div>
           </div>
         </div>

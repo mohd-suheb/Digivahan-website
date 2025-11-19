@@ -1,44 +1,122 @@
-const privacypolicy = {
+// // backend/controller/privacyPolicy.js
+// const express = require("express");
+// const router = express.Router();
 
-    heading: "privacy policy",
-    effectivedate: "2025-9-22",
+// // Privacy Policy Data
+// let privacyPolicyData = {
+//   heading: "Privacy Policy",
+//   effectivedate: "18/09/2025",
+//   description: "...",
+//   Section: [ /* ... */ ],
+// };
+
+// // GET /privacy-policy
+// router.get("/", (req, res) => {
+//   console.log("📥 GET /privacy-policy hit");
+//   return res.status(200).json(privacyPolicyData);
+// });
+
+// // PUT /privacy-policy
+// router.put("/", (req, res) => {
+//   try {
+//     console.log("📤 PUT /privacy-policy hit");
+//     const updateData = req.body;
+
+//     if (!updateData || Object.keys(updateData).length === 0) {
+//       return res.status(400).json({ success: false, message: "No data provided for update." });
+//     }
+
+//     privacyPolicyData = {
+//       ...privacyPolicyData,
+//       ...updateData,
+//       Section: updateData.Section || privacyPolicyData.Section,
+//     };
+
+//     console.log("✅ Updated privacyPolicyData:", privacyPolicyData);
+
+//     return res.status(200).json({
+//       success: true,
+//       message: "Privacy Policy updated successfully.",
+//       data: privacyPolicyData,
+//     });
+//   } catch (error) {
+//     console.error("❌ Error updating privacy policy:", error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error while updating privacy policy.",
+//     });
+//   }
+// });
+
+// module.exports = router;
 
 
-    description: "At mycompany, we are committed to protecting your personal data and ensuring transparency in how we handle your info",
-
-    Section :[
-
-        {
-            tittle: "1. we collect information",
-            content: "we may collect your details such as your name, email, phonenumber when you use our services",
-        },
-
-        {
 
 
-            tittle: "2. How we use your information",
-            content: "Your data is used to provide our services, improve user experince and for communication process",
-        },
+// ========================
+// Privacy Policy Controller
+// ========================
 
-        {
-
-            tittle: "3.Data protection",
-            content:  "We implement encryption, secure servers, and strict access controls to protect your information."
-        },
-
-        {
-
-            tittle : "4. user rights",
-            content: "you can requts access, update or deletion of your data by contacting us"
-        },
-
-         {
-      title: "5. Contact Us",
-      content: "If you have questions, reach us at support@mycompany.com."
+// Privacy Policy Data
+// controller/privacyPolicyData.js
+// Privacy Policy Data
+let privacyPolicyData = {
+  heading: "Privacy Policy",
+  effectivedate: "18/09/2025",
+  description: "Digivahan Digital India ('we', 'our', or 'us') is committed to protecting your privacy...",
+  Section: [
+    {
+      title: "1. Introduction",
+      content: "Digivahan Digital India ('we', 'our', or 'us') is committed to protecting your privacy."
+    },
+    {
+      title: "2. Data We Collect",
+      content: "We collect user data such as name, contact, vehicle info, documents, location, payment info, etc."
+    },
+    {
+      title: "3. How We Use Your Data",
+      content: "Information is used for verification, report generation, secure payments, analytics, and app performance."
     }
-    ]
+  ]
+};
 
+// GET /api/privacy-policy
+const getPrivacyPolicy = (req, res) => {
+  console.log("📥 GET /api/privacy-policy hit");
+  res.status(200).json(privacyPolicyData);
+};
 
-}
+// PUT /api/privacy-policy
+const updatePrivacyPolicy = (req, res) => {
+  try {
+    console.log("📤 PUT /api/privacy-policy hit");
+    const updateData = req.body;
 
-module.exports = privacypolicy;
+    if (!updateData || Object.keys(updateData).length === 0) {
+      return res.status(400).json({ success: false, message: "No data provided for update." });
+    }
+
+    privacyPolicyData = {
+      ...privacyPolicyData,
+      ...updateData,
+      Section: updateData.Section || privacyPolicyData.Section
+    };
+
+    console.log("✅ Updated privacyPolicyData:", privacyPolicyData);
+
+    res.status(200).json({
+      success: true,
+      message: "Privacy Policy updated successfully.",
+      data: privacyPolicyData
+    });
+  } catch (error) {
+    console.error("❌ Error updating privacy policy:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error while updating privacy policy."
+    });
+  }
+};
+
+module.exports = { getPrivacyPolicy, updatePrivacyPolicy };
+
