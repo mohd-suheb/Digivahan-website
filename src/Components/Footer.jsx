@@ -32,7 +32,7 @@ export const Footer = () => {
               <li><Link to="/about">About us</Link></li>
             {/* <li><Link to="/news">News</Link></li>
             <li><Link to="/updates">Updates</Link></li> */}
-            {/* <li><Link to="/login">Login</Link></li> */}
+             <li><Link to="/login">Login</Link></li> 
           </ul>
         </div>
 

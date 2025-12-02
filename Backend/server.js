@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 const conndb = require("./config/db.js");
 
 conndb();
@@ -23,32 +23,33 @@ app.use(cors({
   ],
   credentials: true
 }));
-
-// ===========================
-// Routes
-// ===========================
-const privacyPolicyRouter = require("./routes/privacyPolicy.js");
 const userRoutes = require("./routes/Userroutes.js");
-const otpRoutes = require("./routes/otproutes.js");
+app.use("/api/user", userRoutes);   // ⭐⭐ THIS WAS MISSING ⭐⭐
 
-app.use("/api/users", userRoutes);
-app.use("/api/policies", privacyPolicyRouter); // ✅ Changed from /api/privacy-policy to /api/policies
-app.use("/api/otp", otpRoutes);
+
+// ===========================
+// // Routes
+// //
+// const userRoutes = require("./routes/Userroutes.js");
+// const otpRoutes = require("./routes/otproutes.js");
+
+
+// app.use("/api/otp", otpRoutes);
 
 // ===========================
 // Test external API
 // ===========================
-const API_KEY = process.env.NEWS_API_KEY;
-app.get("/api/news", async (req, res) => {
-  try {
-    const response = await fetch(`https://newsapi.org/v2/everything?q=india&sortBy=publishedAt&apiKey=${API_KEY}`);
-    const data = await response.json();
-    res.json(data.articles || []);
-  } catch (error) {
-    console.error("Error fetching news:", error);
-    res.status(500).json({ error: "Error fetching news" });
-  }
-});
+// const API_KEY = process.env.NEWS_API_KEY;
+// app.get("/api/news", async (req, res) => {
+//   try {
+//     const response = await fetch(`https://newsapi.org/v2/everything?q=india&sortBy=publishedAt&apiKey=${API_KEY}`);
+//     const data = await response.json();
+//     res.json(data.articles || []);
+//   } catch (error) {
+//     console.error("Error fetching news:", error);
+//     res.status(500).json({ error: "Error fetching news" });
+//   }
+// });
 
 // ===========================
 // Start server

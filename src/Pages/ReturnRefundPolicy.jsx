@@ -1,95 +1,83 @@
-import React, { useState, useEffect } from "react";
-import { FaRecycle } from "react-icons/fa";
+import { BsShieldCheck } from "react-icons/bs";
 
-const ReturnRefundPolicyPage = () => {
-  const [refund, setRefund] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/return-refund-policy`);
-        if (!res.ok) throw new Error("Failed to fetch policy data");
-        const data = await res.json();
-        console.log("Fetched refund policy:", data);
-        setRefund(data);
-      } catch (err) {
-        console.error("Error while fetching data:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  // Show loading
-  if (loading) {
-    return (
-      <div className="text-xl text-center text-green-500 animate-pulse py-12">
-        Loading...
-      </div>
-    );
-  }
-
-  // Hide error and no-data section (just skip render)
-  if (error || !refund) {
-    return null;
-  }
+export default function RefundPolicy() {
+  const policy = {
+    heading: "Refund & Cancellation Policy",
+    effectivedate: "18/Jun/2025",
+    Section: [
+      {
+        title: "1. Overview",
+        content:
+          "This Refund & Cancellation Policy outlines the rules and procedures for refunds, cancellations, and disputes related to services offered by Digivahan Digital India.",
+      },
+      {
+        title: "2. Service Nature",
+        content:
+          "Our services involve digital processing of vehicle documents, verification, and real-time data fetching. Once a service request is initiated, it may not be possible to reverse the process.",
+      },
+      {
+        title: "3. Cancellation Policy",
+        content:
+          "• Cancellation is only allowed before a service begins processing.\n• Once data verification or document processing starts, cancellation cannot be requested.\n• Orders mistakenly placed due to user error are not eligible for cancellation.",
+      },
+      {
+        title: "4. Refund Policy",
+        content:
+          "Refunds may be issued only when:\n• Payment was made but the service could not be delivered.\n• Duplicate payment was made.\n• System failure resulted in an incomplete service.\n\nRefunds will NOT be issued if:\n• Incorrect or invalid details were submitted by the user.\n• Processing has already started or service is completed.\n• User changes their mind after placing the order.",
+      },
+      {
+        title: "5. Refund Processing Time",
+        content:
+          "Approved refunds will be processed within 7–10 working days directly to the original payment method used during the transaction.",
+      },
+      {
+        title: "6. Contact for Refunds",
+        content:
+          "For refund or cancellation requests, contact:\n📧 support@digivahan.in\nPlease include order ID, mobile number, and proof of payment.",
+      },
+    ],
+  };
 
   return (
-    <div className="px-4 sm:px-6 lg:px-12 py-8 max-w-4xl mx-auto">
-      {/* Top Border */}
-      <div className="border-b-2 border-blue-300 w-3/4 sm:w-2/3 md:w-1/2 mb-4 mx-auto"></div>
+    <div className="px-6 lg:px-16 py-10 max-w-4xl mx-auto">
+      <div className="border-b-2 border-blue-400 w-2/3 md:w-1/2 mx-auto mb-3"></div>
 
-      {/* Heading */}
-      <h1 className="text-3xl sm:text-4xl lg:text-2xl font-bold mb-4 text-center text-blue-300">
-        {refund.heading}
+      <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-600">
+        {policy.heading}
       </h1>
 
-      {/* Bottom Border */}
-      <div className="border-b-2 border-blue-300 w-3/4 sm:w-2/3 md:w-1/2 mx-auto mb-8"></div>
+      <div className="border-b-2 border-blue-400 w-full md:w-1/2 mx-auto mt-2"></div>
 
-      {/* Effective Date */}
-      <p className="text-black mt-10 sm:text-xl md:text-xl italic text-center font-semibold">
-        📅 Effective Date: {refund.effectivedate}
+      <p className="text-center italic text-lg mt-6 font-semibold text-gray-800">
+        📅 Effective Date: {policy.effectivedate}
       </p>
 
-      {/* Description */}
-      <p className="mt-8 text-gray-500 text-sm sm:text-xl leading-relaxed max-w-prose mx-auto text-justify">
-        {refund.description}
-      </p>
-
-      {/* Sections */}
       <div className="space-y-6 mt-10">
-        {refund.sections?.map((sec, index) => (
+        {policy.Section.map((sec, index) => (
           <div
             key={index}
-            className="p-5 rounded-md shadow-sm hover:shadow-md transition duration-200"
+            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
           >
-            <h2 className="text-2xl font-semibold mb-2 text-blue-900">
+            <h2 className="text-2xl font-bold text-blue-700 mb-2">
               {sec.title}
             </h2>
-            <p className="text-black text-base leading-relaxed whitespace-pre-line">
+            <p className="text-black whitespace-pre-line leading-relaxed">
               {sec.content}
             </p>
           </div>
         ))}
       </div>
 
-      {/* Footer line */}
-      <div className="flex items-center justify-center mt-20 gap-2">
-        <FaRecycle className="text-green-600 text-xl" />
-        <p className="text-center text-sm font-bold text-gray-800">
-          We value your trust — refunds are handled with care and transparency.
+      <div className="flex items-center justify-center mt-16 gap-2">
+            <BsShieldCheck className="text-blue-500 text-xl" />
+        <p className="text-sm font-bold text-gray-700">
+          Your trust is important — we aim for transparent refund processing.
         </p>
       </div>
     </div>
   );
-};
+}
 
-export default ReturnRefundPolicyPage;
 
 
 

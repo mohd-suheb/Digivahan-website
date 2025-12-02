@@ -29,7 +29,7 @@ const Navbar = () => {
         {/* Right Side Buttons */}
         <div className="hidden md:flex items-center space-x-3">
           <Link to="/login">
-            {/* <button className="text-yellow-500 cursor-pointer">Login</button> */}
+           <button className="text-yellow-500 cursor-pointer">Login</button> 
           </Link>
           <Link to="/button">
             {/* <div className="bg-yellow-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-yellow-600 transition">
