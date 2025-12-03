@@ -1,5 +1,6 @@
 
-
+import {  Users } from 'lucide-react';
+import { MdBlockFlipped } from 'react-icons/md';
 
 import React, { useState } from "react";
 import {
@@ -37,6 +38,8 @@ import {
   Pie,
   Cell,
 } from "recharts";
+// import { LuQrCode } from "react-icons/lu";
+// import { MdBlockFlipped } from "react-icons/md";
 
 const AdminDashboard = () => {
   const [currentPage, setCurrentPage] = useState("dashboard");
@@ -521,14 +524,411 @@ const AdminDashboard = () => {
             )}
           </div>
         )}
+{/*           qr management page. */}
+  { currentPage === "qr" && (
+    <div className="bg-white">
+
+     <h1 className="text-2xl  text-gray-900">QR Management</h1>
+     <p className="text-sm text-gray-600">Manage and monitor QR code allocation</p>
+
+     <div className="flex gap-5">
+  {/* Card 1 - Assigned QR Codes */}
+  <div className="relative bg-blue-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+    <div>
+      <p className="text-gray-600 text-sm">Assigned QR Codes</p>
+      <div className="flex flex-row gap-2 mt-2">
+        <p className="text-3xl font-semibold">487</p>
+        <p className="text-green-400 text-sm mt-2">~12%</p>
+      </div>
+    </div>
+    
+    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
+      <QrCode className="text-gray-700 text-xl" />
+    </div>
+  </div>
+
+  {/* Card 2 - Blocked QR Codes */}
+  <div className="relative bg-pink-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+    <div>
+      <p className="text-gray-600 text-sm">Blocked QR Codes</p>
+      <div className="flex flex-row gap-2 mt-2">
+        <p className="text-3xl font-semibold">23</p>
+        <p className="text-red-400 text-sm mt-2">~5%</p>
+      </div>
+    </div>
+    
+    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
+      <MdBlockFlipped className="text-gray-700 text-xl" />
+    </div>
+  </div>
+</div>
+
+<div className="flex gap-5">
+  {/* Card 3 - Total Unassigned QR Codes */}
+  <div className="relative bg-yellow-100 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+    <div>
+      <p className="text-gray-600 text-sm">Total Unassigned QR Codes</p>
+      <div className="flex flex-row gap-2 mt-2">
+        <p className="text-3xl font-semibold">145</p>
+      </div>
+    </div>
+    
+    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
+      <QrCode className="text-gray-700 text-xl" />
+    </div>
+  </div>
+
+  {/* Card 4 - QR Not Allotted to Sales Persons */}
+  <div className="relative bg-orange-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+    <div>
+      <p className="text-gray-600 text-sm">QR Not Allotted to Sales Persons</p>
+      <div className="flex flex-row gap-2 mt-2">
+        <p className="text-3xl font-semibold">68</p>
+      </div>
+    </div>
+    
+    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
+      <Users className="text-gray-700 text-xl" />
+    </div>
+  </div>
+</div>
+      <h1 className="text-xl  text-gray-900 mt-3">Sales Person QR Allocation Summary</h1>
+      <p className="text-sm text-gray-600">View QR code distribution across sales team</p>
+
+  {/* many cards secction */}
+
+      <div className="grid grid-cols-4 gap-4 mt-3">
+
+        {/* Card 1 - Rahul Sharma */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Rahul Sharma</h3>
+              <p className="text-xs text-gray-500">SP-105</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">47</span>
+          </div>
+        </div>
+
+        {/* Card 2 - Priya Mehta */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Priya Mehta</h3>
+              <p className="text-xs text-gray-500">SP-102</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">35</span>
+          </div>
+        </div>
+
+        {/* Card 3 - Amit Kumar */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Amit Kumar</h3>
+              <p className="text-xs text-gray-500">SP-108</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">52</span>
+          </div>
+        </div>
+
+        {/* Card 4 - Sneha Patel */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Sneha Patel</h3>
+              <p className="text-xs text-gray-500">SP-101</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">41</span>
+          </div>
+        </div>
+
+        {/* Card 5 - Vikram Singh */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Vikram Singh</h3>
+              <p className="text-xs text-gray-500">SP-110</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">35</span>
+          </div>
+        </div>
+
+        {/* Card 6 - Anjali Reddy */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Anjali Reddy</h3>
+              <p className="text-xs text-gray-500">SP-103</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">44</span>
+          </div>
+        </div>
+
+        {/* Card 7 - Rohan Gupta */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Rohan Gupta</h3>
+              <p className="text-xs text-gray-500">SP-107</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">39</span>
+          </div>
+        </div>
+
+        {/* Card 8 - Kavita Joshi */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Kavita Joshi</h3>
+              <p className="text-xs text-gray-500">SP-104</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">48</span>
+          </div>
+        </div>
+
+        {/* Card 9 - Deepak Verma */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Deepak Verma</h3>
+              <p className="text-xs text-gray-500">SP-109</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">33</span>
+          </div>
+        </div>
+
+        {/* Card 10 - Neha Kapoor */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Neha Kapoor</h3>
+              <p className="text-xs text-gray-500">SP-106</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">42</span>
+          </div>
+        </div>
+
+        {/* Card 11 - Sanjay Rao */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Sanjay Rao</h3>
+              <p className="text-xs text-gray-500">SP-111</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">36</span>
+          </div>
+        </div>
+
+        {/* Card 12 - Pooja Malhotra */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Pooja Malhotra</h3>
+              <p className="text-xs text-gray-500">SP-112</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">45</span>
+          </div>
+        </div>
+
+        {/* Card 13 */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Arjun Nair</h3>
+              <p className="text-xs text-gray-500">SP-113</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">38</span>
+          </div>
+        </div>
+
+        {/* Card 14 */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Ritu Desai</h3>
+              <p className="text-xs text-gray-500">SP-114</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">50</span>
+          </div>
+        </div>
+
+        {/* Card 15 */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Manish Agarwal</h3>
+              <p className="text-xs text-gray-500">SP-115</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">43</span>
+          </div>
+        </div>
+
+        {/* Card 16 */}
+        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+          <div className="flex items-start gap-2 mb-2">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Divya Shah</h3>
+              <p className="text-xs text-gray-500">SP-116</p>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
+            <span className="text-xs text-blue-700">QR Assigned:</span>
+            <span className="text-xs font-semibold text-blue-700">46</span>
+          </div>
+        </div>
+
+      </div>
+    
+ 
+
+{/*  */}
+
+
+    </div>
+  )}
+
+
 
         {/* Other Pages - Under Construction */}
-        {currentPage !== "dashboard" && currentPage !== "orders" && (
+        {/* {currentPage !== "dashboard" && currentPage !== "orders" && (
           <div className="bg-white rounded-lg shadow p-8 text-center mt-10">
             <h2 className="text-2xl font-bold capitalize">{currentPage} Page</h2>
             <p className="text-gray-500">This page is under construction</p>
           </div>
-        )}
+        )} */}
+
+
+
+
+ 
+
+
       </div>
     </div>
   );
