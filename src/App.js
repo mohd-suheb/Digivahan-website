@@ -25,6 +25,10 @@ import SessionExpired from "./Pages/SessionExpired";
 import Visitus from "./Pages/Visitus";
 import Raise from "./Pages/Raise";
 import Reports from "./Pages/Reports";
+import QRFormPage from "./Pages/QRFormPage";
+import Qrformblock from "./Pages/QRFormBlock";
+import ALotedQrcode from "./Pages/ALotedQrcode";
+import Rahulpage from "./Pages/Rahulpage";
 function App() {
   return (
     <Router>
@@ -74,6 +78,11 @@ function App() {
         <Route path = "/Raise" element = {<Raise/>}/>
         <Route path = "/Report" element = {<Reports/>}/>
         <Route path =  "/about" element = {<AboutUs/>}/>
+        <Route path = "/qrform" element={<QRFormPage />} />
+        <Route path = "/qrredform" element ={<Qrformblock/>} />
+        <Route path = "/ALocate" element ={<ALotedQrcode/>} />
+
+        <Route path = "/rahul" element = {< Rahulpage/>} />
         
 
 

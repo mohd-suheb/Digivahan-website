@@ -3,6 +3,7 @@ import {  Users } from 'lucide-react';
 import { MdBlockFlipped } from 'react-icons/md';
 
 import React, { useState } from "react";
+
 import {
   Clock,
   QrCode,
@@ -38,6 +39,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import { useNavigate } from 'react-router-dom';
 // import { LuQrCode } from "react-icons/lu";
 // import { MdBlockFlipped } from "react-icons/md";
 
@@ -46,6 +48,7 @@ const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [downloadedOrders, setDownloadedOrders] = useState({});
   const [ordersView, setOrdersView] = useState(null); // null, "processed", "unprocessed"
+  const navigate = useNavigate();
 
   const handleDownload = (id) => {
     setDownloadedOrders((prev) => ({
@@ -531,67 +534,80 @@ const AdminDashboard = () => {
      <h1 className="text-2xl  text-gray-900">QR Management</h1>
      <p className="text-sm text-gray-600">Manage and monitor QR code allocation</p>
 
-     <div className="flex gap-5">
-  {/* Card 1 - Assigned QR Codes */}
-  <div className="relative bg-blue-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
-    <div>
-      <p className="text-gray-600 text-sm">Assigned QR Codes</p>
-      <div className="flex flex-row gap-2 mt-2">
-        <p className="text-3xl font-semibold">487</p>
-        <p className="text-green-400 text-sm mt-2">~12%</p>
-      </div>
-    </div>
     
-    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
-      <QrCode className="text-gray-700 text-xl" />
-    </div>
-  </div>
 
-  {/* Card 2 - Blocked QR Codes */}
-  <div className="relative bg-pink-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
-    <div>
-      <p className="text-gray-600 text-sm">Blocked QR Codes</p>
-      <div className="flex flex-row gap-2 mt-2">
-        <p className="text-3xl font-semibold">23</p>
-        <p className="text-red-400 text-sm mt-2">~5%</p>
-      </div>
-    </div>
-    
-    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
-      <MdBlockFlipped className="text-gray-700 text-xl" />
-    </div>
-  </div>
-</div>
+      {/* ----------------- ROW 1 ----------------- */}
+      <div className="flex gap-5">
+        
+        {/* Card 1 - Assigned QR Codes */}
+        <div>
+          <div
+            onClick={() => navigate("/qrform")}
+            className="relative bg-blue-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4 cursor-pointer"
+          >
+            <p className="text-gray-600 text-sm">Assigned QR Codes</p>
 
-<div className="flex gap-5">
-  {/* Card 3 - Total Unassigned QR Codes */}
-  <div className="relative bg-yellow-100 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
-    <div>
-      <p className="text-gray-600 text-sm">Total Unassigned QR Codes</p>
-      <div className="flex flex-row gap-2 mt-2">
-        <p className="text-3xl font-semibold">145</p>
-      </div>
-    </div>
-    
-    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
-      <QrCode className="text-gray-700 text-xl" />
-    </div>
-  </div>
+            <div className="flex flex-row gap-2 mt-2">
+              <p className="text-3xl font-semibold">487</p>
+              <p className="text-green-400 text-sm mt-2">~12%</p>
+            </div>
 
-  {/* Card 4 - QR Not Allotted to Sales Persons */}
-  <div className="relative bg-orange-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
-    <div>
-      <p className="text-gray-600 text-sm">QR Not Allotted to Sales Persons</p>
-      <div className="flex flex-row gap-2 mt-2">
-        <p className="text-3xl font-semibold">68</p>
+            <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center shadow">
+              <QrCode className="text-gray-700 text-xl" />
+            </div>
+          </div>
+
+       
+        </div>
+
+        {/* Card 2 - Blocked QR Codes */}
+        <div onClick={() => navigate("/qrredform")}
+         className="relative bg-pink-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+          <p className="text-gray-600 text-sm">Blocked QR Codes</p>
+
+          <div className="flex flex-row gap-2 mt-2">
+            <p className="text-3xl font-semibold">23</p>
+            <p className="text-red-400 text-sm mt-2">~5%</p>
+          </div>
+
+          <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center shadow">
+            <MdBlockFlipped className="text-gray-700 text-xl" />
+          </div>
+        </div>
+
       </div>
-    </div>
-    
-    <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center">
-      <Users className="text-gray-700 text-xl" />
-    </div>
-  </div>
-</div>
+
+      {/* ----------------- ROW 2 ----------------- */}
+      <div className="flex gap-5">
+
+        {/* Card 3 - Total Unassigned QR Codes */}
+        <div className="relative bg-yellow-100 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+          <p className="text-gray-600 text-sm">Total Unassigned QR Codes</p>
+
+          <div className="flex flex-row gap-2 mt-2">
+            <p className="text-3xl font-semibold">145</p>
+          </div>
+
+          <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center shadow">
+            <QrCode className="text-gray-700 text-xl" />
+          </div>
+        </div>
+
+        {/* Card 4 - QR Not Allotted to Sales Persons */}
+        <div onClick={() => navigate("/ALocate")}
+         className="relative bg-orange-200 h-28 w-[500px] rounded-lg border border-gray-300 mt-5 p-4">
+          <p className="text-gray-600 text-sm">QR Not Allotted to Sales Persons</p>
+
+          <div className="flex flex-row gap-2 mt-2">
+            <p className="text-3xl font-semibold">68</p>
+          </div>
+
+          <div className="absolute top-4 right-4 bg-white h-12 w-12 rounded-full flex items-center justify-center shadow">
+            <Users className="text-gray-700 text-xl" />
+          </div>
+        </div>
+
+      </div>
       <h1 className="text-xl  text-gray-900 mt-3">Sales Person QR Allocation Summary</h1>
       <p className="text-sm text-gray-600">View QR code distribution across sales team</p>
 
@@ -600,7 +616,8 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-4 gap-4 mt-3">
 
         {/* Card 1 - Rahul Sharma */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/rahul')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -619,7 +636,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 2 - Priya Mehta */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div  onClick={()=>navigate('/priyapage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -638,7 +656,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 3 - Amit Kumar */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/amitpage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -657,7 +676,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 4 - Sneha Patel */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/patelpage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -676,7 +696,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 5 - Vikram Singh */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/vikrampage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -695,7 +716,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 6 - Anjali Reddy */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/anjalipage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -714,7 +736,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 7 - Rohan Gupta */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/rohanpage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -733,7 +756,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 8 - Kavita Joshi */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/kavitapage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -752,7 +776,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 9 - Deepak Verma */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/deepakpage')}
+        className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -771,7 +796,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 10 - Neha Kapoor */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/nehapage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -790,7 +816,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 11 - Sanjay Rao */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/sanjaypage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -809,7 +836,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 12 - Pooja Malhotra */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/poojapage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -828,7 +856,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 13 */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div  onClick={()=>navigate('/srkpage')}
+        className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -847,7 +876,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 14 */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/skpage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -866,7 +896,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 15 */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div  onClick={()=>navigate('/rkpage')} 
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -885,7 +916,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Card 16 */}
-        <div className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
+        <div onClick={()=>navigate('/jkpage')}
+         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
           <div className="flex items-start gap-2 mb-2">
             <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
