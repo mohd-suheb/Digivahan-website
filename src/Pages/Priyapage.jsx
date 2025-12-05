@@ -1,4 +1,5 @@
 import React from 'react'
+import { ArrowLeft, Mail, Phone, TrendingUp } from 'lucide-react';
 
 const Priyapage = () => {
   return (

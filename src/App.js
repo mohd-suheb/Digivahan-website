@@ -29,6 +29,18 @@ import QRFormPage from "./Pages/QRFormPage";
 import Qrformblock from "./Pages/QRFormBlock";
 import ALotedQrcode from "./Pages/ALotedQrcode";
 import Rahulpage from "./Pages/Rahulpage";
+import Priyapage from "./Pages/Priyapage";
+import Nhkapoor from "./Pages/Nhkapoor";
+import Pooja from "./Pages/Pooja";
+import Sanjay from "./Pages/Sanjay";
+import Amitkumar from "./Pages/Amitkumar";
+import Kavita from "./Pages/Kavita";
+import Nehapatel from "./Pages/Nehapatel";
+import Vikrampage from "./Pages/Vikrampage";
+import Rohanpage from "./Pages/Rohanpage";
+import Deepak from "./Pages/Deepak";
+import Anjalipage from "./Pages/Anjalipage";
+
 function App() {
   return (
     <Router>
@@ -83,6 +95,21 @@ function App() {
         <Route path = "/ALocate" element ={<ALotedQrcode/>} />
 
         <Route path = "/rahul" element = {< Rahulpage/>} />
+        <Route path = "/priyapage" element = {<Priyapage/>} />
+        <Route path = "/amitpage" element = {<Amitkumar/>} />
+        {/* <Route path = "/amitpage" element = {<Amitkumar/>} /> */}
+
+        <Route path = "/patelpage" element = {< Nehapatel/>} />
+        <Route path = "/vikrampage" element = {< Vikrampage/>} />
+        <Route path = "/anjalipage" element = {< Anjalipage/>} />
+        <Route path = "/rohanpage" element = {< Rohanpage/>} />
+
+        <Route path = "/sanjaypage'" element = {< Sanjay/>} />
+        <Route path = "/nehapage" element = {<Nhkapoor/>} />
+        <Route path = "/deepakpage" element = {< Deepak/>} />
+        <Route path = "/kavitapage" element = {< Kavita/>} />
+        
+
         
 
 

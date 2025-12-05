@@ -1,6 +1,19 @@
 
 import {  Users } from 'lucide-react';
 import { MdBlockFlipped } from 'react-icons/md';
+import ManageUserApp from '../Components/ManageUserApp';
+import UpdatePolicies from '../Components/UpdatePolicies';
+import Editpolicypage from '../Components/Editpolicypage';
+import FuelPriceManager from '../Components/FuelPriceManager';
+import ManageTrendingCars from '../Components/ManageTrendingCars';
+import Managetop from '../Components/Managetop';
+import Managepopcm from '../Components/Managepopcm';
+import Managetipsinfo from '../Components/Managetipsinfo';
+import Managenews from '../Components/Managenews';
+import ManageQrguid from '../Components/ManageQrguid';
+import ManageQrbenifits from '../Components/ManageQrbenifits';
+import Appinfo from '../Components/Appinfo';
+
 
 import React, { useState } from "react";
 
@@ -44,10 +57,14 @@ import { useNavigate } from 'react-router-dom';
 // import { MdBlockFlipped } from "react-icons/md";
 
 const AdminDashboard = () => {
-  const [currentPage, setCurrentPage] = useState("dashboard");
+  const [currentPage, setCurrentPage] = useState("manageUser");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [downloadedOrders, setDownloadedOrders] = useState({});
-  const [ordersView, setOrdersView] = useState(null); // null, "processed", "unprocessed"
+  const [ordersView, setOrdersView] = useState(null);
+  const [selectedPolicy, setSelectedPolicy] = useState("");
+
+   
+
   const navigate = useNavigate();
 
   const handleDownload = (id) => {
@@ -106,6 +123,7 @@ const AdminDashboard = () => {
     { id: "issues", icon: AlertOctagon, label: "Issues / Priority" },
     { id: "reports", icon: FileText, label: "Reports" },
     { id: "settings", icon: Settings, label: "Settings" },
+    { id: "manageuser", icon: Settings, label: "Manageusers" },
   ];
 
   const StatCard = ({
@@ -855,85 +873,6 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Card 13 */}
-        <div  onClick={()=>navigate('/srkpage')}
-        className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
-          <div className="flex items-start gap-2 mb-2">
-            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Arjun Nair</h3>
-              <p className="text-xs text-gray-500">SP-113</p>
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
-            <span className="text-xs text-blue-700">QR Assigned:</span>
-            <span className="text-xs font-semibold text-blue-700">38</span>
-          </div>
-        </div>
-
-        {/* Card 14 */}
-        <div onClick={()=>navigate('/skpage')}
-         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
-          <div className="flex items-start gap-2 mb-2">
-            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Ritu Desai</h3>
-              <p className="text-xs text-gray-500">SP-114</p>
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
-            <span className="text-xs text-blue-700">QR Assigned:</span>
-            <span className="text-xs font-semibold text-blue-700">50</span>
-          </div>
-        </div>
-
-        {/* Card 15 */}
-        <div  onClick={()=>navigate('/rkpage')} 
-         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
-          <div className="flex items-start gap-2 mb-2">
-            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Manish Agarwal</h3>
-              <p className="text-xs text-gray-500">SP-115</p>
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
-            <span className="text-xs text-blue-700">QR Assigned:</span>
-            <span className="text-xs font-semibold text-blue-700">43</span>
-          </div>
-        </div>
-
-        {/* Card 16 */}
-        <div onClick={()=>navigate('/jkpage')}
-         className="bg-gradient-to-br from-white to-white/70 h-24 w-52 rounded-md border border-gray-200 hover:shadow-lg transition-shadow p-3">
-          <div className="flex items-start gap-2 mb-2">
-            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900">Divya Shah</h3>
-              <p className="text-xs text-gray-500">SP-116</p>
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 rounded-full border border-blue-200">
-            <span className="text-xs text-blue-700">QR Assigned:</span>
-            <span className="text-xs font-semibold text-blue-700">46</span>
-          </div>
-        </div>
 
       </div>
     
@@ -946,22 +885,75 @@ const AdminDashboard = () => {
   )}
 
 
+{currentPage === "manageuser" && (
+  <ManageUserApp setCurrentPage ={setCurrentPage} />
+)}
 
-        {/* Other Pages - Under Construction */}
-        {/* {currentPage !== "dashboard" && currentPage !== "orders" && (
-          <div className="bg-white rounded-lg shadow p-8 text-center mt-10">
-            <h2 className="text-2xl font-bold capitalize">{currentPage} Page</h2>
-            <p className="text-gray-500">This page is under construction</p>
-          </div>
-        )} */}
+ {currentPage === "policies" && (
+  <UpdatePolicies 
+    onBack={() => setCurrentPage("manageuser")} 
+    setSelectedPolicy={setSelectedPolicy}  // ✅ Add this
+    setCurrentPage={setCurrentPage}        // ✅ Add this
+  />
+)}
 
 
 
+{currentPage === "editpolicy" && (
+  <Editpolicypage
+    policy={selectedPolicy}           // ✅ Selected policy ka name
+    onBack={() => setCurrentPage("policies")}
+    setSelectedPolicy={setSelectedPolicy}  // ✅ Function pass karo
+    setCurrentPage={setCurrentPage}   // ✅ Ye bhi pass karo agar zarurat ho
+  />
+)}
 
+{currentPage === "fuelPrice" && (
+        <FuelPriceManager onBack={() => setCurrentPage("manageuser")} />
+)}
+
+
+{currentPage === "trendingCars" && (
+  <ManageTrendingCars onBack={() => setCurrentPage("manageuser")} />
+)}
+
+{ currentPage === "managetop" && (
+  <Managetop  onBack={() => setCurrentPage("manageuser")}/>
+)}
+
+{ currentPage === "popularcamp"  && (
+  <Managepopcm onBack ={()=>setCurrentPage("manageuser")}/>
+)}
+
+{ currentPage === "managetipsinfo"  && (
+  <Managetipsinfo onBack ={()=>setCurrentPage("manageuser")}/>
+)}
  
+ { currentPage === "managenews"&& (
+  <Managenews onBack ={()=>setCurrentPage("manageuser")}/>
+)}
+
+ { currentPage === "manageQrguide" && (
+  <ManageQrguid  onBack ={()=>setCurrentPage("manageUser")}/>
+)}
+
+ { currentPage === "manageQrbenifits" && (
+  <ManageQrbenifits  onBack ={()=>setCurrentPage("manageUser")}/>
+)}
+
+
+ { currentPage === "appinfo" && (
+  <Appinfo  onBack ={()=>setCurrentPage("manageUser")}/>
+)}
+
+
+
+
 
 
       </div>
+
+
     </div>
   );
 };
