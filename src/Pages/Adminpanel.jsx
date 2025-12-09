@@ -13,6 +13,10 @@ import Managenews from '../Components/Managenews';
 import ManageQrguid from '../Components/ManageQrguid';
 import ManageQrbenifits from '../Components/ManageQrbenifits';
 import Appinfo from '../Components/Appinfo';
+import Updatetrendingcar from '../Components/Updatetrendingcar';
+import DeletetCom from '../Components/DeletetCom';
+import AllTrendingCars from '../Components/AllTrendingCars';
+import Addtrendingcar from '../Components/Addtrendingcar';
 
 
 import React, { useState } from "react";
@@ -56,12 +60,13 @@ import { useNavigate } from 'react-router-dom';
 // import { LuQrCode } from "react-icons/lu";
 // import { MdBlockFlipped } from "react-icons/md";
 
-const AdminDashboard = () => {
+const AdminDashboard = ({onBack}) => {
   const [currentPage, setCurrentPage] = useState("manageUser");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [downloadedOrders, setDownloadedOrders] = useState({});
   const [ordersView, setOrdersView] = useState(null);
   const [selectedPolicy, setSelectedPolicy] = useState("");
+
 
    
 
@@ -911,7 +916,7 @@ const AdminDashboard = () => {
 {currentPage === "fuelPrice" && (
         <FuelPriceManager onBack={() => setCurrentPage("manageuser")} />
 )}
-
+{/* 
 
 {currentPage === "trendingCars" && (
   <ManageTrendingCars onBack={() => setCurrentPage("manageuser")} />
@@ -946,10 +951,81 @@ const AdminDashboard = () => {
   <Appinfo  onBack ={()=>setCurrentPage("manageUser")}/>
 )}
 
+{currentPage === "updatetrendingcar" && (  // ✅ Separate condition
+  <Updatetrendingcar
+    onBack={() => setCurrentPage("trendingCars")}  // ✅ Back to trending cars
+    setCurrentPage={setCurrentPage}
+  />
+)}
+
+ */}
 
 
+ {currentPage === "trendingCars" && (
+  <ManageTrendingCars 
+    onBack={() => setCurrentPage("manageuser")} 
+    setCurrentPage={setCurrentPage}  // ✅ Add this
+  />
+)}
 
+{ currentPage === "managetop" && (
+  <Managetop  
+    onBack={() => setCurrentPage("manageuser")}
+    setCurrentPage={setCurrentPage}  // ✅ Add this also
+  />
+)}
 
+{ currentPage === "popularcamp"  && (
+  <Managepopcm onBack ={()=>setCurrentPage("manageuser")}/>
+)}
+
+{ currentPage === "managetipsinfo"  && (
+  <Managetipsinfo onBack ={()=>setCurrentPage("manageuser")}/>
+)}
+ 
+ { currentPage === "managenews"&& (
+  <Managenews onBack ={()=>setCurrentPage("manageuser")}/>
+)}
+
+ { currentPage === "manageQrguide" && (
+  <ManageQrguid  onBack ={()=>setCurrentPage("manageser")}/>
+)}
+
+ { currentPage === "manageQrbenifits" && (
+  <ManageQrbenifits  onBack ={()=>setCurrentPage("manageser")}/>
+)}
+
+ { currentPage === "appinfo" && (
+  <Appinfo  onBack ={()=>setCurrentPage("manageuser")}/>
+)}
+
+{currentPage === "updatetrendingcar" && (  // Separate condition
+  <Updatetrendingcar
+    onBack={() => setCurrentPage("trendingCars")}  //  Back to trending cars
+    setCurrentPage={setCurrentPage}
+  />
+)}
+
+{currentPage === "Deletecomparison" && (  // Separate condition
+  <DeletetCom
+    onBack={() => setCurrentPage("manageuser")}  //  Back to trending cars
+    setCurrentPage={setCurrentPage}
+  />
+)}
+
+{ currentPage === "Alltrendingcars" && (
+  <AllTrendingCars 
+   onBack={()=>setCurrentPage("manageuser")}
+   setCurrentPage={setCurrentPage}
+
+  />
+)}
+
+{ currentPage === "addtrendingcar" && (
+  <Addtrendingcar onBack={()=>setCurrentPage("manageuser")}
+   setCurrentPage={setCurrentPage}
+  />
+)}
 
       </div>
 
