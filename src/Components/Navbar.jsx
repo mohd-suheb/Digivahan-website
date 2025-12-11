@@ -20,8 +20,8 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-5 text-gray-700 font-medium">
             <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-            {/* <li><Link to="/news" onClick={() => setIsOpen(false)}>News</Link></li>
-            <li><Link to="/updates" onClick={() => setIsOpen(false)}>Updates</Link></li> */}
+             {/* <li><Link to="/news" onClick={() => setIsOpen(false)}>News</Link></li>
+            <li><Link to="/updates" onClick={() => setIsOpen(false)}>Updates</Link></li>  */}
             <li><Link to="/about" onClick={() => setIsOpen(false)}>About Us</Link></li>
           </ul>
         </div>
@@ -32,9 +32,9 @@ const Navbar = () => {
            <button className="text-yellow-500 cursor-pointer">Login</button> 
           </Link>
           <Link to="/button">
-            {/* <div className="bg-yellow-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-yellow-600 transition">
+             <div className="bg-yellow-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-yellow-600 transition">
               Get Started
-            </div> */}
+            </div> 
           </Link>
         </div>
 
@@ -52,14 +52,14 @@ const Navbar = () => {
         <div className="md:hidden bg-white shadow-lg px-6 py-6 space-y-6 absolute top-[72px] left-0 w-full">
           <ul className="flex flex-col gap-4 text-gray-700 font-medium text-base">
             <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-            {/* <li><Link to="/news" onClick={() => setIsOpen(false)}>News</Link></li>
-            <li><Link to="/updates" onClick={() => setIsOpen(false)}>Updates</Link></li> */}
+            <li><Link to="/news" onClick={() => setIsOpen(false)}>News</Link></li>
+            <li><Link to="/updates" onClick={() => setIsOpen(false)}>Updates</Link></li> 
             <li><Link to="/about" onClick={() => setIsOpen(false)}>About Us</Link></li>
           </ul>
 
           <div className="flex flex-col gap-4">
             <Link to="/login" onClick={() => setIsOpen(false)}>
-              {/* <button className="text-yellow-500 w-full text-left">Login</button> */}
+               <button className="text-yellow-500 w-full text-left">Login</button> 
             </Link>
             <Link to="/button" onClick={() => setIsOpen(false)}>
               <div className="bg-yellow-500 text-white px-4 py-2 rounded text-center hover:bg-yellow-600 transition">

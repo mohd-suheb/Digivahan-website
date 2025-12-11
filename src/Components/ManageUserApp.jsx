@@ -3,6 +3,7 @@ import React from 'react';
 export default function ManageUserApp({ setCurrentPage }) {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
+
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -44,7 +45,7 @@ export default function ManageUserApp({ setCurrentPage }) {
           </div>
 
           {/* Manage Top Trending Cars */}
-          <div
+          {/* <div
             onClick={() => setCurrentPage("managetop")}
               
             className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-green-500 p-6"
@@ -56,11 +57,12 @@ export default function ManageUserApp({ setCurrentPage }) {
             <p className="text-sm text-gray-600">
               Add, update, delete, or view trending cars
             </p>
-          </div>
+          </div> */}
 
           {/* Manage Popular Comparison */}
-          <div
-           onClick={()=>setCurrentPage("popularcamp")}
+          {/* <div
+           onClick={() => setCurrentPage("popularcamp")}
+         
             className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-purple-500 p-6"
           >
             <div className="bg-purple-500 w-16 h-16 rounded-full mb-4"></div>
@@ -70,7 +72,34 @@ export default function ManageUserApp({ setCurrentPage }) {
             <p className="text-sm text-gray-600">
               Create and manage car comparisons
             </p>
-          </div>
+          </div> */}
+
+          {/* Manage Popular Comparison */}
+<div className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 border-l-4 border-purple-500 p-6">
+  <div 
+    onClick={() => setCurrentPage("popularcamp")}
+    className="cursor-pointer"
+  >
+    <div className="bg-purple-500 w-16 h-16 rounded-full mb-4"></div>
+    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+      Manage Popular Comparison
+    </h3>
+    <p className="text-sm text-gray-600">
+      Create and manage car comparisons
+    </p>
+  </div>
+  
+  {/* Add Comparison Button */}
+  {/* <button
+    onClick={(e) => {
+      e.stopPropagation();
+      setCurrentPage("addcpm");
+    }}
+    className="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+  >
+    + Add New Comparison
+  </button> */}
+</div>
 
           {/* Manage Tips Info */}
           <div
@@ -102,7 +131,7 @@ export default function ManageUserApp({ setCurrentPage }) {
 
           {/* Manage QR Guide */}
           <div
-            onClick={()=>setCurrentPage("manageQrguide" )}
+            onClick={()=>setCurrentPage("manageQrguide")}
             className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-pink-500 p-6"
           >
             <div className="bg-pink-500 w-16 h-16 rounded-full mb-4"></div>
@@ -130,7 +159,7 @@ export default function ManageUserApp({ setCurrentPage }) {
 
 
            {/* App info */}
-          <div
+          {/* <div
              onClick={()=>setCurrentPage("appinfo")}
             className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-red-500 p-6"
           >
@@ -141,7 +170,7 @@ export default function ManageUserApp({ setCurrentPage }) {
             <p className="text-sm text-gray-600">
               Highlight App info benefits
             </p>
-          </div>
+          </div> */}
 
         </div>
       </div>

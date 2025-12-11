@@ -17,6 +17,16 @@ import Updatetrendingcar from '../Components/Updatetrendingcar';
 import DeletetCom from '../Components/DeletetCom';
 import AllTrendingCars from '../Components/AllTrendingCars';
 import Addtrendingcar from '../Components/Addtrendingcar';
+import Addcomparisn from '../Components/Addcomparisn';
+import CheckAllcom from '../Components/CheckAllcom';
+import Deletecom from '../Components/Deletecom';
+import Updatecom from '../Components/Updatecom';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Bell, User } from 'lucide-react';
+
+
+
+
 
 
 import React, { useState } from "react";
@@ -68,7 +78,21 @@ const AdminDashboard = ({onBack}) => {
   const [selectedPolicy, setSelectedPolicy] = useState("");
 
 
-   
+
+   // Top mein ek helper function banao
+// const isManageUserPage = (page) => {
+//   const manageUserPages = [
+//     "manageuser", "policies", "fuelPrice", "managetop", "popularcamp", 
+//     "managetipsinfo", "managenews", "manageQrguide", "manageQrbenifits", 
+//     "appinfo", "updatetrendingcar", "Deletecomparison", "Alltrendingcars", 
+//     "addtrendingcar", "addcpm", "chekallcmp", "Delcmp", "Update", "editpolicy"
+//   ];
+//   return manageUserPages.includes(page);
+// };
+
+
+
+
 
   const navigate = useNavigate();
 
@@ -176,30 +200,63 @@ const AdminDashboard = ({onBack}) => {
       {/* Sidebar */}
       <div
         className={`fixed lg:static top-0 left-0 h-full bg-white shadow-lg w-64 transform transition-transform duration-300 z-40 
+          ${sidebarOpen ? "w-64" : "w-20"} 
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
-        <div className="p-6 border-b flex items-center gap-2">
-          <h1 className="text-xl font-bold text-blue-600">Admin Panel</h1>
-        </div>
-
+        <div className="p-6 border-b flex items-center justify-between">
+  {sidebarOpen && <h1 className="text-xl font-bold text-blue-600">Admin Panel</h1>}
+  <button
+    onClick={() => setSidebarOpen(!sidebarOpen)}
+    className="hidden lg:block p-1 hover:bg-gray-100 rounded"
+  >
+    {sidebarOpen ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+  </button>
+</div>
         <nav className="flex-1 p-4">
           {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                setCurrentPage(item.id);
-                setSidebarOpen(false);
-                if (item.id === "orders") setOrdersView(null);
-              }}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors ${
-                currentPage === item.id
-                  ? "bg-blue-500 text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              <item.icon className="w-5 h-5" />
-              <span>{item.label}</span>
-            </button>
+
+//             <button
+//               key={item.id}
+//               onClick={() => {
+//                 setCurrentPage(item.id);
+//                 setSidebarOpen(false);
+//                 if (item.id === "orders") setOrdersView(null);
+//               }}
+//              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors ${
+//   currentPage === item.id || 
+//   (item.id === "manageuser" && ["policies", "fuelPrice", "managetop", "popularcamp", "managetipsinfo", "managenews", "manageQrguide", "manageQrbenifits", "appinfo", "updatetrendingcar", "Deletecomparison", "Alltrendingcars", "addtrendingcar", "addcpm", "chekallcmp", "Delcmp", "Update"].includes(currentPage))
+//     ? "bg-blue-500 text-white"
+//     : "text-gray-700 hover:bg-gray-100"
+// }`}
+//             >
+//               <item.icon className="w-5 h-5" />
+//               <span>{item.label}</span>
+//             </button>
+
+<button
+  key={item.id}
+  onClick={() => {
+    setCurrentPage(item.id);
+    setSidebarOpen(false);
+    if (item.id === "orders") setOrdersView(null);
+  }}
+  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors ${
+    currentPage === item.id || 
+    (item.id === "manageuser" && [
+      "manageuser", "policies", "editpolicy", "fuelPrice", "trendingCars", 
+      "managetop", "popularcamp", "managetipsinfo", "managenews", 
+      "manageQrguide", "manageQrbenifits", "appinfo", "updatetrendingcar", 
+      "Deletecomparison", "Alltrendingcars", "addtrendingcar", "addcpm", 
+      "chekallcmp", "Delcmp", "Update"
+    ].includes(currentPage))
+      ? "bg-blue-500 text-white"
+      : "text-gray-700 hover:bg-gray-100"
+  }`}
+>
+  <item.icon className="w-5 h-5" />
+  <span>{item.label}</span>
+</button>
+
           ))}
         </nav>
 
@@ -212,7 +269,7 @@ const AdminDashboard = ({onBack}) => {
       {/* Main Content */}
       <div className="flex-1 overflow-auto p-4 lg:p-6">
         {/* Header */}
-        <header className="bg-white rounded-lg shadow-sm p-4 mb-4 flex flex-col md:flex-row items-center justify-between gap-4">
+         <header className="sticky top-0 z-10 bg-white shadow-sm p-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="w-full md:w-1/2 relative">
             <input
               type="text"
@@ -226,7 +283,10 @@ const AdminDashboard = ({onBack}) => {
             <button className="relative text-xl">🔔</button>
             <span className="text-gray-700">👤 Admin User</span>
           </div>
-        </header>
+        </header> 
+
+      
+
 
         {/* Dashboard */}
         {currentPage === "dashboard" && (
@@ -891,7 +951,8 @@ const AdminDashboard = ({onBack}) => {
 
 
 {currentPage === "manageuser" && (
-  <ManageUserApp setCurrentPage ={setCurrentPage} />
+  <ManageUserApp  onBack={() => setCurrentPage("manageuser")} 
+   setCurrentPage ={setCurrentPage} />
 )}
 
  {currentPage === "policies" && (
@@ -914,51 +975,11 @@ const AdminDashboard = ({onBack}) => {
 )}
 
 {currentPage === "fuelPrice" && (
-        <FuelPriceManager onBack={() => setCurrentPage("manageuser")} />
-)}
-{/* 
-
-{currentPage === "trendingCars" && (
-  <ManageTrendingCars onBack={() => setCurrentPage("manageuser")} />
-)}
-
-{ currentPage === "managetop" && (
-  <Managetop  onBack={() => setCurrentPage("manageuser")}/>
-)}
-
-{ currentPage === "popularcamp"  && (
-  <Managepopcm onBack ={()=>setCurrentPage("manageuser")}/>
-)}
-
-{ currentPage === "managetipsinfo"  && (
-  <Managetipsinfo onBack ={()=>setCurrentPage("manageuser")}/>
-)}
- 
- { currentPage === "managenews"&& (
-  <Managenews onBack ={()=>setCurrentPage("manageuser")}/>
-)}
-
- { currentPage === "manageQrguide" && (
-  <ManageQrguid  onBack ={()=>setCurrentPage("manageUser")}/>
-)}
-
- { currentPage === "manageQrbenifits" && (
-  <ManageQrbenifits  onBack ={()=>setCurrentPage("manageUser")}/>
+   <FuelPriceManager onBack={() => setCurrentPage("manageuser")}
+     setCurrentPage={setCurrentPage} />
 )}
 
 
- { currentPage === "appinfo" && (
-  <Appinfo  onBack ={()=>setCurrentPage("manageUser")}/>
-)}
-
-{currentPage === "updatetrendingcar" && (  // ✅ Separate condition
-  <Updatetrendingcar
-    onBack={() => setCurrentPage("trendingCars")}  // ✅ Back to trending cars
-    setCurrentPage={setCurrentPage}
-  />
-)}
-
- */}
 
 
  {currentPage === "trendingCars" && (
@@ -975,28 +996,32 @@ const AdminDashboard = ({onBack}) => {
   />
 )}
 
-{ currentPage === "popularcamp"  && (
-  <Managepopcm onBack ={()=>setCurrentPage("manageuser")}/>
-)}
+
 
 { currentPage === "managetipsinfo"  && (
-  <Managetipsinfo onBack ={()=>setCurrentPage("manageuser")}/>
+  <Managetipsinfo onBack ={()=>setCurrentPage("manageuser")}
+    setCurrentPage={setCurrentPage}/>
 )}
  
  { currentPage === "managenews"&& (
-  <Managenews onBack ={()=>setCurrentPage("manageuser")}/>
+  <Managenews onBack ={()=>setCurrentPage("manageuser")}
+    setCurrentPage={setCurrentPage}/>
 )}
 
  { currentPage === "manageQrguide" && (
-  <ManageQrguid  onBack ={()=>setCurrentPage("manageser")}/>
+  <ManageQrguid  onBack ={()=>setCurrentPage("manageuser")}
+    setCurrentPage={setCurrentPage}/>
 )}
 
  { currentPage === "manageQrbenifits" && (
-  <ManageQrbenifits  onBack ={()=>setCurrentPage("manageser")}/>
+  <ManageQrbenifits  onBack ={()=>setCurrentPage("manageuser")}
+    setCurrentPage={setCurrentPage}/>
 )}
 
  { currentPage === "appinfo" && (
-  <Appinfo  onBack ={()=>setCurrentPage("manageuser")}/>
+  <Appinfo  onBack ={()=>setCurrentPage("manageuser")}
+    setCurrentPage={setCurrentPage}
+  />
 )}
 
 {currentPage === "updatetrendingcar" && (  // Separate condition
@@ -1027,6 +1052,40 @@ const AdminDashboard = ({onBack}) => {
   />
 )}
 
+{ currentPage === "popularcamp"  && (
+  <Managepopcm onBack ={()=>setCurrentPage("manageuser")}
+  setCurrentPage={setCurrentPage}
+  />
+)}
+
+{ currentPage === "addcpm" && (
+  <Addcomparisn 
+    onBack={() => setCurrentPage("popularcamp")}
+    setCurrentPage={setCurrentPage}
+  />
+)}
+
+{ currentPage === "chekallcmp" && (
+  <CheckAllcom  onBack={() => setCurrentPage("popularcamp")} 
+   setCurrentPage={setCurrentPage}
+  />
+)}
+
+{
+  currentPage === "Delcmp" && (
+    <Deletecom  onBack={() => setCurrentPage("popularcamp")} 
+   setCurrentPage={setCurrentPage}
+   />
+  )
+}
+
+{
+  currentPage === "Update" && (
+    <Updatecom  onBack={() => setCurrentPage("popularcamp")} 
+   setCurrentPage={setCurrentPage}
+   />
+  )
+}
       </div>
 
 

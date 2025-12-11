@@ -24,11 +24,11 @@ const Login = () => {
     if (email === "admin@gmail.com" && password === "admin123") {
       localStorage.setItem("role", "admin");
       toast.success("Welcome Admin!");
-      setTimeout(() => navigate("/admin-panel"), 1000);
+      setTimeout(() => navigate("/admin-panel"), 100);
     } else {
       localStorage.setItem("role", "user");
       toast.success("Welcome User!");
-      setTimeout(() => navigate("/user-panel"), 1000);
+      setTimeout(() => navigate("/user-panel"), 100);
     }
   };
 
