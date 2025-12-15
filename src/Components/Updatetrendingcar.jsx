@@ -94,36 +94,137 @@ export default function UpdateTrendingCar({setCurrentPage, onBack }) {
           </div>
 
           {/* Search Box */}
-          {!showForm && (
-            <div className="p-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Search by Car ID / Brand / Model
-              </label>
+         <div className="p-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Search by Car ID / Brand / Model
+            </label>
 
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                  placeholder="Enter car ID, brand name, or model name"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                />
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                placeholder="Enter car ID, brand name, or model name"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              />
 
+              <button
+                onClick={handleSearch}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+              >
+                <Search className="w-4 h-4" />
+                Search
+              </button>
+            </div>
+          </div>
+
+
+          {/* FORM REMOVED */}
+           {showForm && (
+            <div className="p-6 pt-0">
+              <div className="grid grid-cols-2 gap-4">
+                {/* Trending Car ID */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Trending Car ID
+                  </label>
+                  <input
+                    type="text"
+                    name="carId"
+                    value={formData.carId}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+
+                {/* Brand Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Brand Name
+                  </label>
+                  <input
+                    type="text"
+                    name="brand"
+                    value={formData.brand}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+
+                {/* Model Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Model Name
+                  </label>
+                  <input
+                    type="text"
+                    name="model"
+                    value={formData.model}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+
+                {/* Price */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Price
+                  </label>
+                  <input
+                    type="text"
+                    name="price"
+                    value={formData.price}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+
+                {/* Mileage */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Mileage
+                  </label>
+                  <input
+                    type="text"
+                    name="mileage"
+                    value={formData.mileage}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+
+                {/* Top Speed */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Top Speed
+                  </label>
+                  <input
+                    type="text"
+                    name="topSpeed"
+                    value={formData.topSpeed || '165 km/h'}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Update Button */}
+              <div className="flex justify-end mt-6">
                 <button
-                  onClick={handleSearch}
+                  onClick={handleSubmit}
                   className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
                 >
                   <Search className="w-4 h-4" />
-                  Search
+                  Update Car
                 </button>
               </div>
             </div>
           )}
-
-          {/* FORM REMOVED */}
         </div>
       </div>
     </div>
   );
 }
+
+

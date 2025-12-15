@@ -45,8 +45,8 @@ export default function ManageUserApp({ setCurrentPage }) {
           </div>
 
           {/* Manage Top Trending Cars */}
-          {/* <div
-            onClick={() => setCurrentPage("managetop")}
+          <div
+             onClick={() => setCurrentPage("managetop")}
               
             className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer border-l-4 border-green-500 p-6"
           >
@@ -57,7 +57,7 @@ export default function ManageUserApp({ setCurrentPage }) {
             <p className="text-sm text-gray-600">
               Add, update, delete, or view trending cars
             </p>
-          </div> */}
+          </div> 
 
           {/* Manage Popular Comparison */}
           {/* <div

@@ -21,8 +21,11 @@ import Addcomparisn from '../Components/Addcomparisn';
 import CheckAllcom from '../Components/CheckAllcom';
 import Deletecom from '../Components/Deletecom';
 import Updatecom from '../Components/Updatecom';
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Search, Bell, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Reports } from '../Components/Reports';
+import IssuesPriorityDashboard from '../Components/IssuePriority';
+import ReviewsManagement from '../Components/ReviewManagement';
+import CustomerQueries from '../Components/CustumerQueris';
 
 
 
@@ -1086,6 +1089,22 @@ const AdminDashboard = ({onBack}) => {
    />
   )
 }
+
+{ currentPage === "reports" && (
+  <Reports/>
+)}
+
+{ currentPage === "issues" && (
+  <IssuesPriorityDashboard/>
+)}
+
+{ currentPage === "reviews" && (
+  <ReviewsManagement/>
+)}
+
+{ currentPage === "queries" && (
+  <CustomerQueries/>
+)}
       </div>
 
 
