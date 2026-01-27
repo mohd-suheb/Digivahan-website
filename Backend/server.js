@@ -1,3 +1,82 @@
+// require("dotenv").config();
+// const express = require("express");
+// const cors = require("cors");
+// const cookieParser = require("cookie-parser");
+// const connectdb = require("./config/db");
+
+// connectdb();
+
+// const app = express();
+// const PORT = process.env.PORT || 5000;
+
+// // Middleware
+// app.use(express.json());
+// app.use(cookieParser());
+
+// app.use(cors({
+//   origin: [
+//     "http://localhost:3000",
+//     "https://digivahan.in",
+//     "https://www.digivahan.in"
+//   ],
+//   credentials: true
+// }));
+
+// // Routes
+// const authRoutes = require("./routes/authRoutes");
+// const vehicleRoutes = require("./routes/vehicleRoutes");
+// const orderRoutes = require("./routes/orderRoutes");
+// const trendingCarRoutes = require("./routes/trendingCarRoutes");
+// const comparisonRoutes = require("./routes/comparisonRoutes");
+// const newsRoutes = require("./routes/newsRoutes");
+// const queryRoutes = require("./routes/queryRoutes");
+// const reviewRoutes = require("./routes/reviewRoutes");
+// const reportRoutes = require("./routes/reportRoutes");
+
+// app.use("/api/auth", authRoutes);
+// app.use("/api/vehicles", vehicleRoutes);
+// app.use("/api/orders", orderRoutes);
+// app.use("/api/trending-cars", trendingCarRoutes);
+// app.use("/api/comparisons", comparisonRoutes);
+// app.use("/api/news", newsRoutes);
+// app.use("/api/queries", queryRoutes);
+// app.use("/api/reviews", reviewRoutes);
+// app.use("/api/reports", reportRoutes);
+
+// app.get("/", (req, res) => {
+//   res.json({ 
+//     message: "DigiVahan Backend API Running!",
+//     version: "1.0.0"
+//   });
+// });
+
+// app.listen(PORT, "0.0.0.0", () => {
+//   console.log(`✅ Backend running on http://0.0.0.0:${PORT}`);
+// });
+
+// {
+//   "name": "digivahan-backend",
+//   "version": "1.0.0",
+//   "description": "DigiVahan Backend API",
+//   "main": "server.js",
+//   "scripts": {
+//     "start": "node server.js",
+//     "dev": "nodemon server.js"
+//   },
+//   "dependencies": {
+//     "bcryptjs": "^2.4.3",
+//     "cookie-parser": "^1.4.6",
+//     "cors": "^2.8.6",
+//     "dotenv": "^16.3.1",
+//     "express": "^4.18.2",
+//     "jsonwebtoken": "^9.0.2",
+//     "mongoose": "^8.0.0"
+//   },
+//   "devDependencies": {
+//     "nodemon": "^3.0.1"
+//   }
+// }
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -13,13 +92,19 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 
+// CORS Configuration - Updated for Vercel deployment
 app.use(cors({
   origin: [
     "http://localhost:3000",
     "https://digivahan.in",
-    "https://www.digivahan.in"
+    "https://www.digivahan.in",
+    "https://digivahan-website-wank.vercel.app", // Your Vercel URL
+    "https://digivahan-website-wank-git-main-suhebs-projects-997a13c3.vercel.app", // Git deployment URL
+    /\.vercel\.app$/ // Allow all Vercel preview deployments
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
 }));
 
 // Routes
@@ -43,13 +128,44 @@ app.use("/api/queries", queryRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/reports", reportRoutes);
 
+// Root endpoint
 app.get("/", (req, res) => {
   res.json({ 
     message: "DigiVahan Backend API Running!",
-    version: "1.0.0"
+    version: "1.0.0",
+    status: "OK",
+    timestamp: new Date()
+  });
+});
+
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.json({ 
+    status: "OK",
+    message: "Server is healthy",
+    database: "Connected",
+    timestamp: new Date()
+  });
+});
+
+// Handle 404
+app.use((req, res) => {
+  res.status(404).json({ 
+    error: "Route not found",
+    path: req.path 
+  });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(err.status || 500).json({ 
+    error: err.message || "Internal server error",
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
   });
 });
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ Backend running on http://0.0.0.0:${PORT}`);
+  console.log(`📦 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
