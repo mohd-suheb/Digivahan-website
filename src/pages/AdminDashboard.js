@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../utils/AuthContext';
-import { orderAPI, vehicleAPI, queryAPI, reviewAPI, reportAPI, trendingCarAPI, newsAPI } from '../services/api';
+ import { orderAPI,  queryAPI, reviewAPI, reportAPI,  } from '../services/api';
 import toast from 'react-hot-toast';
+// trendingCarAPI, newsAPI,vehicleAPI
 
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
@@ -21,8 +22,8 @@ const AdminDashboard = () => {
   const [queries, setQueries] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reports, setReports] = useState([]);
-  const [trendingCars, setTrendingCars] = useState([]);
-  const [news, setNews] = useState([]);
+//   const [trendingCars, setTrendingCars] = useState([]);
+//   const [news, setNews] = useState([]);
 
   useEffect(() => {
     fetchDashboardData();
